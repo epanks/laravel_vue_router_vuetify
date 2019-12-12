@@ -1,84 +1,54 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app clipped>
-      <v-list dense>
-        <v-list-item v-for="item in items" :key="item.text" link>
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.text }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
-        <v-list>
-          <v-list-item v-for="item in items2" :key="item.text" link>
-            <v-list-item-avatar>
-              <img :src="`https://randomuser.me/api/portraits/men/${item.picture}.jpg`" alt />
-            </v-list-item-avatar>
-            <v-list-item-title v-text="item.text" />
-          </v-list-item>
-        </v-list>
-        <v-list-item class="mt-4" link>
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Browse Channels</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-settings</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Manage Subscriptions</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar app clipped-left color="red" dense>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-icon class="mx-4">fab fa-youtube</v-icon>
-      <v-toolbar-title class="mr-12 align-center">
-        <span class="title">Youtube</span>
-      </v-toolbar-title>
-      <v-spacer />
-      <v-row align="center" style="max-width: 650px">
-        <v-text-field
-          :append-icon-cb="() => {}"
-          placeholder="Search..."
-          single-line
-          append-icon="search"
-          color="white"
-          hide-details
-        />
-      </v-row>
-    </v-app-bar>
-
     <v-content>
-      <v-container class="fill-height">
-        <v-row justify="center" align="center">
-          <v-col class="shrink">
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn :href="source" icon large target="_blank" v-on="on">
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  icon
-                  large
-                  href="https://codepen.io/johnjleider/pen/aezMOO"
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-codepen</v-icon>
-                </v-btn>
-              </template>
-              <span>Codepen</span>
-            </v-tooltip>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card class="elevation-12">
+              <v-toolbar
+                color="error"
+                dark
+                flat
+              >
+                <v-toolbar-title>Login Form</v-toolbar-title>
+                <v-spacer />
+                
+              </v-toolbar>
+              <v-card-text>
+                <v-form>
+                  <v-text-field
+                    label="Login"
+                    name="login"
+                    v-model="email"
+                    prepend-icon="mdi-account-circle-outline"
+                    type="text"
+                  />
+
+                  <v-text-field
+                    id="password"
+                    label="Password"
+                    v-model="password"
+                    name="password"
+                    prepend-icon="mdi-account-lock-outline"
+                    type="password"
+                  />
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn color="error" @click="login">Login</v-btn>
+              </v-card-actions>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -87,7 +57,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return {
+      username: '',
+      password: ''    }
+  },
+  methods: {
+    login: function(){
+      localStorage.setItem('token','23dedwe23eed2343fds');
+    }
+  }
+};
 </script>
 
 <style>
